@@ -1,0 +1,88 @@
+#%RAML 1.0
+version: v1
+title: capstone project
+types:
+  userswithid: !include DataType/usersdataTypewithid.raml
+  userswithnoid: !include DataType/userdataTypewithnoid.raml
+  
+/users: 
+  get:
+    description: this will get all users information
+    responses:
+      200:
+        description: 
+        body:
+          application/json:
+            type: userswithid []
+            example: !include examples/getAllusers.raml
+             
+  /{id}:
+    description: gets users by id
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/getuserbyidapi.raml
+                 
+  post:
+    description: creat new user information 
+    body:
+      application/json:
+        type: userswithnoid []
+        example: !include examples/postrequestexample.raml
+    responses:
+      201:
+        body:
+          application/json:
+           example:
+             {"msg":"user created"}
+
+  put:
+    description: 
+    body:
+      application/json:
+        type: userswithid []
+        example: !include examples/putrequestexample.raml
+        
+    responses:
+      202:
+        body:
+          application/json:
+            example:
+              {"msg":"users information created"}
+  delete:
+    description: 
+    queryParameters:
+      id:
+        required:  true
+        type: integer
+    responses:
+      202:
+        body:
+          application/json:
+            example:
+              {"msg":"user information deleted"}
+
+  
+    
+              
+          
+          
+                     
+
+            
+
+
+      
+  
+
+
+          
+
+          
+
+              
+  
+
+  
